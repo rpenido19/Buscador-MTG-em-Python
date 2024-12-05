@@ -7,7 +7,7 @@ import statistics
 from openpyxl import Workbook
 
 BASE_URL = "https://www.mtggoldfish.com"
-ARQUETYPE_URL = f"{BASE_URL}/archetype/muldrotha-the-gravetide/decks"
+ARQUETYPE_URL = f"{BASE_URL}/archetype/niv-mizzet-parun/decks"
 
 def setup_driver():
     """Configura o driver do Selenium."""
@@ -203,7 +203,7 @@ def main():
     driver = setup_driver()
     page_number = 1
     try:
-        while True:
+        while page_number <= 25:  # Limita o loop a 25 páginas
             print(f"Buscando página {page_number}...")
             url = ARQUETYPE_URL if page_number == 1 else f"{ARQUETYPE_URL}?page={page_number}"
             driver.get(url)
